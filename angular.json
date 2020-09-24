@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AdminEmarket"
+    }
+  },
+  "defaultProject": "AdminEmarket",
+  "cli": {
+    "analytics": "5226df15-6dfd-4d58-ac1b-02afc7f1783e"
+  }
 }
