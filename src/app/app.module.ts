@@ -7,6 +7,9 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageloiComponent } from './layouts/pageloi/pageloi.component';
 import { MainComponent } from './main/main.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { MainModule } from './main/main.module';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -16,10 +19,12 @@ import { MainComponent } from './main/main.component';
     FooterComponent,
     PageloiComponent,
     MainComponent,
+    SidebarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]
