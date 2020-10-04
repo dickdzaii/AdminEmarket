@@ -7,9 +7,9 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageloiComponent } from './layouts/pageloi/pageloi.component';
 import { MainComponent } from './main/main.component';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-import { MainModule } from './main/main.module';
+// import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -18,9 +18,9 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     FooterComponent,
     PageloiComponent,
-    MainComponent,
-    SidebarComponent,
+    // MainComponent,
     LoginComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
