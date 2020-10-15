@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path:'',loadChildren:()=>import('./login/login.module').then(x=>x.LoginModule)},
-  {path:'Main',loadChildren:()=>import('./main/main.module').then(m=>m.MainModule)},
+  {path:'main',loadChildren:()=>import('./main/main.module').then(m=>m.MainModule)},
   {path:'**',component:PageloiComponent}
 ];
 
