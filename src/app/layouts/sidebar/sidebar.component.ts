@@ -12,35 +12,35 @@ menus:any;
   ngOnInit(): void {
     this.menus=[
       {
-        'name':'Quản lý sản phẩm','icon':'lnr lnr-file-empty','children':
+        'name':'quản lý sản phẩm','action':'qlsp','icon':'lnr lnr-file-empty','children':
         [
-          {'ten':'Danh Sách'},
-          {'ten':'Giá Bán'},
-          {'ten':'Kiểm kho'}
+          {'ten':'Danh Sách','link':'san-pham'},
+          {'ten':'Giá Bán','link':'gia-ban'},
+          {'ten':'Kiểm kho','link':'kiem-kho'}
         ]
       },
       {
-        'name':'Quản lý đơn hàng','icon':'lnr lnr-file-empty','children':
+        'name':'quản lý đơn hàng','action':'qldh','icon':'lnr lnr-file-empty','children':
         [
-          {'ten':'Danh Sách'},
-          {'ten':'Thêm đơn mới'},
-          {'ten':'ahjhj'}
+          {'ten':'Danh Sách','link':'don-hang'},
+          {'ten':'Thêm đơn mới','link':'them-don-hang'},
+          {'ten':'ahjhj','link':'quan-ly-san-pham'}
         ]
       },
       {
-        'name':'Quản lý nhập hàng','icon':'lnr lnr-file-empty','children':
+        'name':'quản lý nhập hàng','action':'qlnh','icon':'lnr lnr-file-empty','children':
         [
-          {'ten':'Danh Sách'},
-          {'ten':'Thêm phiếu nhập'},
-          {'ten':'Trả Hàng nhập'}
+          {'ten':'Danh Sách','link':'nhap-hang'},
+          {'ten':'Thêm phiếu nhập','link':'them-phieu-nhap'},
+          {'ten':'Trả Hàng nhập','link':'tra-hang-nhap'}
         ]
       },
       {
-        'name':'Thống kê','icon':'lnr lnr-file-empty','children':
+        'name':'Thống kê','action':'tkbc','icon':'lnr lnr-file-empty','children':
         [
-          {'ten':'Báo cáo cuối ngày'},
-          {'ten':'Báo cáo tháng'},
-          {'ten':'Tổng kết năm'}
+          {'ten':'Báo cáo cuối ngày','link':'bao-cao-cuoi-ngay'},
+          {'ten':'Báo cáo tháng','link':'cuoi-thang/'},
+          {'ten':'Tổng kết năm','link':'cuoi-nam'}
         ]
       },
     ]

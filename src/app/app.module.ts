@@ -9,6 +9,7 @@ import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MainModule,HttpClientModule,FormsModule
+    AppRoutingModule,MainModule,HttpClientModule,FormsModule, NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
