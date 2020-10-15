@@ -7,7 +7,8 @@ import { PageloiComponent } from './layouts/pageloi/pageloi.component';
 // import { MainComponent } from './main/main.component';
 import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +16,10 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
     AppComponent,
     PageloiComponent,
     LoginComponent,
-    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MainModule
+    AppRoutingModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
