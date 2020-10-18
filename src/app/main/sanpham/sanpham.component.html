@@ -1,1 +1,30 @@
-<p>sanpham works!</p>
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Weekly Overview</h3>
+        <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+    </div>
+    <div class="panel-body">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Mã Loại</th>
+            <th>Ảnh</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let sp of list_item">
+        <tr>
+            <td>{{sp.maSanPham}}</td>
+            <td>{{sp.tenSanPham}}</td>
+            <td></td>
+            <td></td>
+            <td><a href="" class="btn btn-danger">Xóa</a></td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
+</div>
+    </div>

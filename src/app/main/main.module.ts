@@ -1,20 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SanphamComponent } from './sanpham/sanpham.component';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NavbarComponent } from '../layouts/navbar/navbar.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
+import { LayoutsModule } from '../layouts/layouts.module';
+import { SanphamModule } from './sanpham/sanpham.module';
+import { ShopModule } from './shop/shop.module';
+import { DonhangModule } from './donhang/donhang.module';
+import { SanphamComponent } from './sanpham/sanpham.component';
+
 
 @NgModule({
   declarations: [
     DashboardComponent,MainComponent,
-    SanphamComponent,NavbarComponent,SidebarComponent
+    NavbarComponent,SidebarComponent,SanphamComponent
   ],
   imports: [
-    CommonModule,MainRoutingModule,FormsModule
+    CommonModule,
+    MainRoutingModule,
+    FormsModule,
+    LayoutsModule,
+    SanphamModule,
+    ShopModule,
+    DonhangModule,
+
   ]
 })
 export class MainModule { }

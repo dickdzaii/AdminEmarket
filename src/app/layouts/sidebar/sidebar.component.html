@@ -1,4 +1,3 @@
-<p>sidebar works!</p>
 <div id="sidebar-nav" class="sidebar">
     <div class="sidebar-scroll">
         <nav>
@@ -10,7 +9,7 @@
                     <div id="{{i.action}}" class="collapse ">
                         <ul class="nav">
                             <ng-container *ngFor="let con of i.children">
-                            <li><a routerLink="{{con.link}}" class="">{{con.ten}}</a></li>
+                            <li><a [routerLink]="[con.link]" class="">{{con.ten}}</a></li>
                         </ng-container>
                         </ul>
                     </div>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule,PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { PageloiComponent } from './layouts/pageloi/pageloi.component';
 import { LoginComponent } from './login/login.component';
 
