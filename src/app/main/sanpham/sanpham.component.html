@@ -10,25 +10,30 @@
         <tr>
             <th>STT</th>
             <th>Tên sản phẩm</th>
-            <th>Mã Loại</th>
+            <th>Loại</th>
+            <th>Kho</th>
+            <th>Giá Bán</th>
             <th>Ảnh</th>
             <th>Xóa</th>
         </tr>
     </thead>
     <tbody>
         <ng-container *ngFor="let sp of list_item">
-        <tr>
-            <td>{{sp.maSanPham}}</td>
+        <tr  style="cursor: pointer;" title="Xem chi tiết {{sp.tenSanPham}}">
+            <td>{{sp.maSanPham}}</td> 
             <td>{{sp.tenSanPham}}</td>
+           
+            <td>{{sp.loaicon2.tenLoai}}</td>
+            <td>{{sp.kho.soLuongCon}}</td>
+            <td>{{sp.giahientai.gia |currency:'VND'}}</td>
             <td></td>
-            <td></td>
-            <td><a href="" class="btn btn-danger">Xóa</a></td>
+            <td><a class="btn btn-danger" (click)="xoasp(sp.maSanPham)">Xóa</a></td>
         </tr>
     </ng-container>
     </tbody>
 </table>
 </div>
-<div>  <ngb-pagination [collectionSize]="list_item[0].total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
+<div>  <ngb-pagination [collectionSize]="list_item[1].total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
     </div>
 
     <!-- modal -->
@@ -39,9 +44,74 @@
               <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin sản phẩm</h4>
               <h4 *ngIf="!isCreate" class="modal-title">Cập nhật thông tin sản phẩm</h4>
             </div>
-            <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal utehy-form">
-              <div class="modal-body no-padding">
-                <div class="form-group">
+            <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal ">
+              <div class="modal-body ">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label class="control-label no-padding-right"> Tên sản phẩm (<span style="color: red;">*</span>)</label>
+                        <input type="text" placeholder="Tên sản phẩm" class="form-control" formControlName="tensanpham"/>
+                        <div *ngIf="submitted && f.tensanpham.errors" class="invalid-feedback">
+                          <div *ngIf="f.tensanpham.errors.required">Vui lòng nhập tên sản phẩm</div>
+                        </div>
+                      </td>
+               
+                    <td>
+                      <label class="control-label no-padding-right"> Loại (<span style="color: red;">*</span>)</label>
+                      <select formControlName="maloai2" class="form-control" id="">
+                        <option value="l.maLoai">l.tenloai</option>
+                      </select>
+                      <div *ngIf="submitted && f.maloai2.errors" class="invalid-feedback">
+                        <div *ngIf="f.maloai2.errors.required">Vui lòng chọn một loại</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="control-label no-padding-right"> mô tả</label>
+                        <textarea placeholder="Tên sản phẩm" class="form-control" formControlName="mota"></textarea>
+                       
+                    </td>
+                    <td>
+                      <label class="control-label no-padding-right"> ghi chú</label>
+                        <textarea placeholder="Tên sản phẩm" class="form-control" formControlName="ghichu"></textarea>
+                       
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="control-label no-padding-right"> Ảnh</label>
+                      <p-fileUpload #file_image mode="advanced" [showUploadButton]="false" cancelLabel="Hủy" chooseLabel ="Chọn ảnh"   multiple="false" accept="image/*" maxFileSize="1000000">
+                        <ng-template pTemplate="content">
+                            <img *ngIf="user && user.image_url" style="height: 100px;width: 100px;" [src]="user.image_url">
+                        </ng-template>
+                  </p-fileUpload>
+                    </td>
+                    <td>
+                      <label class="control-label no-padding-right"> Số lượng</label>
+                      <input type="text" class="form-control" value="0" formControlName="soluong" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="control-label no-padding-right"> Giá nhập</label>
+                      <input type="text" class="form-control" formControlName="gianhap" />
+                      <div *ngIf="submitted && f.gianhap.errors" class="invalid-feedback">
+                        <div *ngIf="f.gianhap.errors.required">Vui lòng chọn một loại</div>
+                      </div>
+                    </td>
+                    <td>
+                      <label class="control-label no-padding-right"> Giá bán</label>
+                      <input type="text" class="form-control" formControlName="giaban" />
+                      <div *ngIf="submitted && f.giaban.errors" class="invalid-feedback">
+                        <div *ngIf="f.giaban.errors.required">Vui lòng nhập giá bán</div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <!-- <div class="form-group">
                   <label class="col-sm-2 control-label no-padding-right"> Tên sản phẩm(<span style="color: red;">*</span>)</label>
                   <div class="col-sm-5">
                     <input type="text" placeholder="Tên sản phẩm" formControlName="tensanpham"/>
@@ -51,14 +121,14 @@
                   </div>
                   <label class="col-sm-2 control-label no-padding-right"> Loại(<span style="color: red;">*</span>)</label>
                   <div class="col-sm-3">
-                    <!-- <p-calendar formControlName="ngaysinh" [dateFormat]="dateFormat"  [locale]="locale_vn" [showIcon]="true" inputId="icon"></p-calendar>
+                    <p-calendar formControlName="ngaysinh" [dateFormat]="dateFormat"  [locale]="locale_vn" [showIcon]="true" inputId="icon"></p-calendar>
                      -->
-                     <input type="text" placeholder="Loại" formControlName="maloai2"/>
+                     <!-- <input type="text" placeholder="Loại" formControlName="maloai2"/>
                     <div *ngIf="submitted && f.maloai2.errors" class="invalid-feedback">
                       <div *ngIf="f.maloai2.errors.required">Vui lòng nhập loại</div>
                     </div>
                   </div>
-                </div>
+                </div> --> 
                 <!-- <div class="form-group">
                   <label class="col-sm-2 control-label no-padding-right"> Email(<span style="color: red;">*</span>)</label>
                   <div class="col-sm-5">
@@ -111,7 +181,7 @@
                     </div>
                   </div>
                 </div> -->
-                
+
                 <!-- <div class="form-group">
                   <label class="col-sm-2 control-label no-padding-right"> Mật khẩu(<span style="color: red;">*</span>)</label>
                   <div class="col-sm-4">

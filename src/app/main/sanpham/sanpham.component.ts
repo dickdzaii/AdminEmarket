@@ -67,14 +67,21 @@ createModal() {
       'mota': [''],
       'ghichu': [''],
       'giaban': [0, Validators.required],
-      'gianhap': [0, Validators.required]
-      
+      'gianhap': [0, Validators.required],
+      'soluong':[0],
     });
     // this.formdata.get('ngaysinh').setValue(this.today);
     // this.formdata.get('gioitinh').setValue(this.genders[0].value); 
     // this.formdata.get('role').setValue(this.roles[0].value);
     this.doneSetupForm = true;
   });
+}
+xoasp(ma){
+  if(confirm("bạn có muốn xóa sản phẩm?")){
+  this._api.get('api/QLSanPham/xoa/'+ma)
+  .takeUntil(this.unsubscribe).subscribe(res => {
+    
+  });}
 }
 reset(){
   this.single_item = null;
@@ -88,6 +95,7 @@ reset(){
     
   });
 }
+
 closeModal() {
   $('#SanphamModal').closest('.modal').modal('hide');
 }
