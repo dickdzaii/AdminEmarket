@@ -1,1 +1,51 @@
-<p>donhang works!</p>
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Danh sách đơn hàng</h3>
+        <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+    </div>
+    <div class="panel-body">
+        <!-- <a (click)="createModal()"  class="btn btn-success ">Thêm</a> -->
+        Sắp xếp theo <select name="" class="btn btn-default" id="">
+            <option value="">Ngày đặt</option>
+            <option value="">Trạng thái</option>
+            <option value="">Giá trị tăng dần</option>
+            <option value="">Giá trị giảm dần</option>
+        </select>
+        <br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã</th>
+            <th>Ngày</th>
+            <th>Mã Khách</th>
+            <th>Trạng thái</th>
+            <th>Vị trí hiện tại</th>
+            <th>Xem</th>
+             <th>KCG</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let dh of donhangs">
+        <tr  style="cursor: pointer;" title="Xem chi tiết ">
+            <td>{{donhangs.indexOf(dh)+1}}</td>
+            <td>{{dh.maDH}}</td> 
+            <td>{{dh.ngayDat}}</td>
+            <td>{{dh.maKH}}</td>
+           <td *ngIf="dh.trangThai==0">Chưa xác nhận</td>
+           <td *ngIf="dh.trangThai==1">Đã xác nhận</td>
+           <td *ngIf="dh.trangThai==2">Đã đóng gói</td>
+           <td *ngIf="dh.trangThai==3">Đang giao hàng</td>
+           <td *ngIf="dh.trangThai==4">Đã giao hàng</td>
+           <td *ngIf="dh.trangThai==5">Đã nhận hàng</td>
+           <td *ngIf="dh.trangThai==6">Đã hủy đơn</td>
+           <td></td>
+            <td></td>
+            <td><a class="btn btn-danger" >Xóa</a></td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
+</div>
+<div>  <ngb-pagination [collectionSize]="total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
+    </div>
