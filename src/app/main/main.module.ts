@@ -11,6 +11,8 @@ import { SanphamModule } from './sanpham/sanpham.module';
 import { ShopModule } from './shop/shop.module';
 import { DonhangModule } from './donhang/donhang.module';
 import { SanphamComponent } from './sanpham/sanpham.component';
+import { KhachhangModule } from './khachhang/khachhang.module';
+import { NhaphangModule } from './nhaphang/nhaphang.module';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { SanphamComponent } from './sanpham/sanpham.component';
     SanphamModule,
     ShopModule,
     DonhangModule,
+    KhachhangModule,NhaphangModule
 
   ]
 })

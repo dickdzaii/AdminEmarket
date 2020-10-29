@@ -13,7 +13,9 @@ const routes: Routes = [
       {path:'thong-ke',loadChildren:()=>import('./thongke/thongke.module').then(x=>x.ThongkeModule)},
       {path:'shop',loadChildren:()=>import('./shop/shop.module').then(x=>x.ShopModule)},
   {path:'don-hang',loadChildren:()=>import('./donhang/donhang.module').then(x=>x.DonhangModule)},
-   {path:'san-pham',loadChildren:()=>import('./sanpham/sanpham.module').then(x=>x.SanphamModule)}     
+   {path:'san-pham',loadChildren:()=>import('./sanpham/sanpham.module').then(x=>x.SanphamModule)},
+   {path:'khach-hang',loadChildren:()=>import('./khachhang/khachhang.module').then(x=>x.KhachhangModule)},
+   {path:'nhap-hang',loadChildren:()=>import('./nhaphang/nhaphang.module').then(x=>x.NhaphangModule)}               
     ]
   }, 
 ];

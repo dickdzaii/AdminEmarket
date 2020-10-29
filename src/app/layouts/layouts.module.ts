@@ -19,7 +19,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
     PanelModule,
     TableModule,
     InputTextModule,
-    CommonModule,
     CalendarModule,
     DropdownModule,
     FileUploadModule
@@ -32,7 +31,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
     PanelModule,
     TableModule,
     InputTextModule,
-    CommonModule,
     CalendarModule,
     DropdownModule,
     FileUploadModule

@@ -20,9 +20,11 @@
             <th>Ngày</th>
             <th>Mã Khách</th>
             <th>Trạng thái</th>
+            <th>Xử lý</th>
             <th>Vị trí hiện tại</th>
             <th>Xem</th>
              <th>KCG</th>
+             <th>Hủy</th>
         </tr>
     </thead>
     <tbody>
@@ -39,9 +41,19 @@
            <td *ngIf="dh.trangThai==4">Đã giao hàng</td>
            <td *ngIf="dh.trangThai==5">Đã nhận hàng</td>
            <td *ngIf="dh.trangThai==6">Đã hủy đơn</td>
+           <td *ngIf="dh.trangThai==0"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Xác nhận</a></td>
+           <td *ngIf="dh.trangThai==1"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Đóng gói</a></td>
+           <td *ngIf="dh.trangThai==2"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Xác nhận</a></td>
+           <td *ngIf="dh.trangThai==3"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Giao hàng</a></td>
+           <td *ngIf="dh.trangThai==4"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Nhận thành công</a></td>
+
            <td></td>
             <td></td>
             <td><a class="btn btn-danger" >Xóa</a></td>
+            <td *ngIf="dh.trangThai==6">Đã hủy</td>
+            <td *ngIf="dh.trangThai==7">Đã Trả hàng</td>
+            <td *ngIf="dh.trangThai==5"><a class="btn btn-danger">Trả hàng</a></td>
+            <td *ngIf="dh.trangThai<5>"><a class="btn btn-danger">X</a></td>
         </tr>
     </ng-container>
     </tbody>

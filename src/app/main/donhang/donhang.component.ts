@@ -35,7 +35,11 @@ total:any;
 
     }, err => { });
   }
-  changeStatus(){
-    console.log(0);
+  changeStatus(madon){
+    this._api.get('api/QLDonHang/change-stt/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
+      this.val = res;
+      this.loadPage(1);
+
+    }, err => { });
   }
 }
