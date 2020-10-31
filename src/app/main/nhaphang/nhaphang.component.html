@@ -26,12 +26,12 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let kh of khachs">
+        <ng-container>
         <tr  style="cursor: pointer;" title="Xem chi tiết ">
-            <td>{{donhangs.indexOf(kh)+1}}</td>
-            <td>{{kh.maKH}}</td> 
-            <td>{{kh.ngayDat}}</td>
-            <td>{{kh.maKH}}</td>
+            <td></td>
+            <td> </td> 
+            <td> </td>
+            <td> </td>
            <td></td>
            <td></td>
             <td></td>
@@ -41,6 +41,7 @@
     </tbody>
 </table>
 </div>
-<div>  <ngb-pagination [collectionSize]="total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
+<div>  
+    <!-- <ngb-pagination [collectionSize]="total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div> -->
     </div>
 

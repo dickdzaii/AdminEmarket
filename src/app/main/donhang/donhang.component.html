@@ -52,8 +52,8 @@
             <td><a class="btn btn-danger" >Xóa</a></td>
             <td *ngIf="dh.trangThai==6">Đã hủy</td>
             <td *ngIf="dh.trangThai==7">Đã Trả hàng</td>
-            <td *ngIf="dh.trangThai==5"><a class="btn btn-danger">Trả hàng</a></td>
-            <td *ngIf="dh.trangThai<5>"><a class="btn btn-danger">X</a></td>
+            <td *ngIf="dh.trangThai==5;else trahang"><a class="btn btn-danger">Trả hàng</a></td>
+            <td #trahang><a class="btn btn-danger">X</a></td>
         </tr>
     </ng-container>
     </tbody>
