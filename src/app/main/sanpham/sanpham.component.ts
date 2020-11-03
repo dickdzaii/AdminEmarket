@@ -12,6 +12,7 @@ declare var $: any;
   styleUrls: ['./sanpham.component.css']
 })
 export class SanphamComponent extends BaseComponent implements OnInit {
+  response:any;
 list_item:any;
 index:any;
 size:any;
@@ -33,17 +34,21 @@ submitted = false;
   ngOnInit(): void {
     this.index=1;this.size=20;
     
-      this._api.get('api/QLSanPham/all-with-details/'+this.index+'/'+this.size).takeUntil(this.unsubscribe).subscribe(res => {
-      this.list_item = res;
+      this._api.get('api/QLSanPham/all-by-shop/emarket-shop/'+this.index+'/'+this.size).takeUntil(this.unsubscribe).subscribe(res => {
+        this.response = res;
+        this.list_item=this.response.data;
+        this.totalRecords=this.response.totalItems;
 
     
     }, err => { });
   }
 loadPage(page){
   
-  this._api.get('api/QLSanPham/all-with-details/'+page+'/'+this.size)
+  this._api.get('api/QLSanPham/all-by-shop/emarket-shop/'+page+'/'+this.size)
   .takeUntil(this.unsubscribe).subscribe(res => {
-    this.list_item = res;
+    this.response = res;
+      this.list_item=this.response.data;
+      this.totalRecords=this.response.totalItems;
   });
 }
 pwdCheckValidator(control){

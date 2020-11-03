@@ -25,7 +25,7 @@ export class InventoryReceivingService {
       local_storage = JSON.parse(localStorage.getItem('invenrece'));
       let ok = true;
       for (let x of local_storage) {
-        if (x.item_id == item.item_id) {
+        if (x.maSanPham == item.maSanPham) {
           x.quantity += 1;
           ok = false;
           break;
@@ -48,7 +48,7 @@ export class InventoryReceivingService {
   }
 
   deleteItem(item_id) {
-    let local_storage = this.getItems().filter((x) => x.item_id != item_id);
+    let local_storage = this.getItems().filter((x) => x.maSanPham != item_id);
     localStorage.setItem('invenrece', JSON.stringify(local_storage));
     this.itemsSubject.next(local_storage);
   }
@@ -56,7 +56,7 @@ export class InventoryReceivingService {
   addQty(item) {
     let local_storage = JSON.parse(localStorage.getItem('invenrece'));
     for (let x of local_storage) {
-      if (x.item_id == item.item_id) {
+      if (x.maSanPham == item.maSanPham) {
         x.quantity = item.quantity;
         break;
       }

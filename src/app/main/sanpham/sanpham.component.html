@@ -33,7 +33,7 @@
     </tbody>
 </table>
 </div>
-<div>  <ngb-pagination [collectionSize]="list_item[1].total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
+<div>  <ngb-pagination [collectionSize]="totalRecords" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
     </div>
 
     <!-- modal -->

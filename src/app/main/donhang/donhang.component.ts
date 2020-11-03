@@ -11,6 +11,7 @@ index:any;
 size:any;
 val:any;
 donhangs:any;
+donhang:any;
 total:any;
   constructor(injector:Injector) {
     super(injector);
@@ -27,6 +28,12 @@ total:any;
     
     }, err => { });
   }
+  orderById(madon){
+    this._api.get('api/QLDonHang/by-id/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
+ this.donhang=res;
+
+    }, err => { });
+  }
   loadPage(page){
     this._api.get('api/QLDonHang/getbyshop/s0001/'+page+'/'+this.size).takeUntil(this.unsubscribe).subscribe(res => {
       this.val = res;
@@ -37,7 +44,14 @@ total:any;
   }
   changeStatus(madon){
     this._api.get('api/QLDonHang/change-stt/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
-      this.val = res;
+
+      this.loadPage(1);
+
+    }, err => { });
+  }
+  cancelOrder(madon){
+    this._api.get('api/QLDonHang/change-stt/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
+ 
       this.loadPage(1);
 
     }, err => { });

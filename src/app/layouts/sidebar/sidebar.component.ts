@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { BaseComponent } from 'src/app/services/base.component';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent extends BaseComponent implements OnInit {
 
-  constructor() { }
+  constructor(injector:Injector) {
+    super(injector);
+  }
 menus:any;
   ngOnInit(): void {
     this.menus=[
@@ -44,6 +47,7 @@ menus:any;
         ]
       },
     ]
+    this.loadScripts();
   }
 
 }
