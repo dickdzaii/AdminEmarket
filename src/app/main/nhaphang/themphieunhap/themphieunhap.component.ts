@@ -76,6 +76,6 @@ changeQuantity(quantity,item){
   item.quantity =  quantity;
   item.money = item.quantity *  item.giahientai.gia;
 this._iventoryreceiving.addQty(item);
-}
-}
+        }
+            }
 }

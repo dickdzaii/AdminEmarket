@@ -81,23 +81,24 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-9">
-                <div id="headline-chart" class="ct-chart"></div>
+        <div class="col-md-9">
+           <h3> Tỷ suất doanh thu theo loại</h3>
+                <div class="ct-chart"><google-chart style="height: 400px;width: 600px;" [data]="tysuatloai" [type]="type" [options]="options"></google-chart>
             </div>
-            <div class="col-md-3">
-                <div class="weekly-summary text-right">
-                    <span class="number">2,315</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
-                    <span class="info-label">Total Sales</span>
-                </div>
-                <div class="weekly-summary text-right">
-                    <span class="number">$5,758</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
-                    <span class="info-label">Monthly Income</span>
-                </div>
-                <div class="weekly-summary text-right">
-                    <span class="number">$65,938</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
-                    <span class="info-label">Total Income</span>
-                </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="weekly-summary text-right">
+                <span class="number">{{doanhthu|currency:'VND'}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+                <span class="info-label">Tổng doanh thu</span>
+            </div>
+            <div class="weekly-summary text-right">
+                <span class="number">{{doanhthu-chiphinhap|currency:'VND'}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+                <span class="info-label">Lợi nhuận trước thuế</span>
+            </div>
+            <div class="weekly-summary text-right">
+                <span class="number">{{donvixuat}}</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+                <span class="info-label">Đơn vị xuất ra</span>
             </div>
         </div>
     </div>
@@ -108,58 +109,24 @@
         <!-- RECENT PURCHASES -->
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Recent Purchases</h3>
+                <h3 class="panel-title">Chi tiết doanh thu theo loại</h3>
                 <div class="right">
                     <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                     <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
                 </div>
             </div>
-            <div class="panel-body no-padding">
-                <table class="table table-striped">
+            <div class="panel-body no-padding" style="height: 300px; overflow-y: auto;">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Order No.</th>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Date &amp; Time</th>
-                            <th>Status</th>
+                            <th>Tên loại (chọn để xem chi tiết)</th>
+                            <th><span style="float: right;">Doanh thu</span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a href="#">763648</a></td>
-                            <td>Steve</td>
-                            <td>$122</td>
-                            <td>Oct 21, 2016</td>
-                            <td><span class="label label-success">COMPLETED</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">763649</a></td>
-                            <td>Amber</td>
-                            <td>$62</td>
-                            <td>Oct 21, 2016</td>
-                            <td><span class="label label-warning">PENDING</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">763650</a></td>
-                            <td>Michael</td>
-                            <td>$34</td>
-                            <td>Oct 18, 2016</td>
-                            <td><span class="label label-danger">FAILED</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">763651</a></td>
-                            <td>Roger</td>
-                            <td>$186</td>
-                            <td>Oct 17, 2016</td>
-                            <td><span class="label label-success">SUCCESS</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">763652</a></td>
-                            <td>Smith</td>
-                            <td>$362</td>
-                            <td>Oct 16, 2016</td>
-                            <td><span class="label label-success">SUCCESS</span></td>
+                        <tr *ngFor="let dtl of doanhthuloai" style="cursor:pointer">
+                            <td>{{dtl.tenLoai}}</td>
+                            <td><span style="float: right;">{{dtl.income|currency:'VND'}}</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -177,21 +144,96 @@
         <!-- MULTI CHARTS -->
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Sản phẩm bán chạy trong 10 ngày qua</h3>
+                <h3 class="panel-title">Sản phẩm bán chạy trong tháng</h3>
                 <div class="right">
                     <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                     <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
                 </div>  
             </div>
-            <div class="panel-body">
-                <div class="ct-chart"><google-chart style="width:100%;height: 100%;" [data]="tysuatloai" type="PieChart" [options]="options"></google-chart>
+            <div class="panel-body" >
+              <table class="table" style="height: 300px; overflow-y: auto;">
+                  <thead>
+                      <tr>
+                          <th>Tên sản phẩm</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let spc of spbanchay">
+                          <td>{{spc.tenSanPham}}</td>
+                      </tr>
+                  </tbody>
+              </table>
             </div>
         </div>
         <!-- END MULTI CHARTS -->
     </div>
 </div>
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-6">
+        <!-- RECENT PURCHASES -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Danh sách đơn hàng ({{dsdonhang.length}})</h3>
+                <div class="right">
+                    <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                    <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                </div>
+            </div>
+            <div class="panel-body no-padding" style="height: 300px; overflow-y: auto;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ngày đặt</th>
+                            <th><span style="float: right;">Thanh toán</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dtl of dsdonhang" style="cursor:pointer">
+                            <td>{{dtl.ngayDat}}</td>
+                            <td><span style="float: right;">{{dtl.thanhToan}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
+                    <div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- END RECENT PURCHASES -->
+    </div>
+    <div class="col-md-6">
+        <!-- MULTI CHARTS -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sản phẩm bán chạy trong tháng</h3>
+                <div class="right">
+                    <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                    <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                </div>  
+            </div>
+            <div class="panel-body" >
+              <table class="table" style="height: 300px; overflow-y: auto;">
+                  <thead>
+                      <tr>
+                          <th>Tên sản phẩm</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let spc of spbanchay">
+                          <td>{{spc.tenSanPham}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+        <!-- END MULTI CHARTS -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
         <!-- TODO LIST -->
         <div class="panel">
             <div class="panel-heading">
@@ -247,7 +289,7 @@
         </div>
         <!-- END TODO LIST -->
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <!-- TIMELINE -->
         <div class="panel panel-scrolling">
             <div class="panel-heading">
