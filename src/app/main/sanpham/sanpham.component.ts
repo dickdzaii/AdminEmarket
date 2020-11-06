@@ -13,6 +13,7 @@ declare var $: any;
 })
 export class SanphamComponent extends BaseComponent implements OnInit {
   response:any;
+  loais:any;
 list_item:any;
 index:any;
 size:any;
@@ -41,6 +42,7 @@ submitted = false;
 
     
     }, err => { });
+    this.getAllLoai();
   }
 loadPage(page){
   
@@ -79,6 +81,12 @@ createModal() {
     // this.formdata.get('gioitinh').setValue(this.genders[0].value); 
     // this.formdata.get('role').setValue(this.roles[0].value);
     this.doneSetupForm = true;
+  });
+}
+getAllLoai(){
+  this._api.get('api/Loai/all-with-children')
+  .takeUntil(this.unsubscribe).subscribe(res => {
+    this.loais=res;
   });
 }
 xoasp(ma){

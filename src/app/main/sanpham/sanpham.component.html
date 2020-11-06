@@ -4,7 +4,15 @@
         <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
     </div>
     <div class="panel-body">
-        <a (click)="createModal()"  class="btn btn-success ">Thêm</a>
+      <div>
+        <input type="text" class="form-control" placeholder="tên sản phẩm">
+        <select class="form-control" name="" id="">
+          <option  *ngFor="let ls of loais" value="ls.maLoai">{{ls.tenLoai}}</option>
+        </select>
+        <button class="btn btn-default btn-sm">Tìm</button>
+      </div>
+      <br>
+        <a (click)="createModal()"  class="btn btn-success btn-sm">Thêm</a>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -12,8 +20,9 @@
             <th>Tên sản phẩm</th>
             <th>Loại</th>
             <th>Kho</th>
-            <th>Giá Bán</th>
+            <th>Giá bán</th>
             <th>Ảnh</th>
+            <th>Chi tiết</th>
             <th>Xóa</th>
         </tr>
     </thead>
@@ -27,6 +36,7 @@
             <td>{{sp.kho.soLuongCon}}</td>
             <td>{{sp.giahientai.gia |currency:'VND'}}</td>
             <td></td>
+            <td><a class="btn btn-primary">Xem</a></td>
             <td><a class="btn btn-danger" (click)="xoasp(sp.maSanPham)">Xóa</a></td>
         </tr>
     </ng-container>

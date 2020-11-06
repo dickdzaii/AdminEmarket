@@ -83,21 +83,25 @@
         </div>
         <div class="col-md-9">
            <h3> Tỷ suất doanh thu theo loại</h3>
-                <div class="ct-chart"><google-chart style="height: 400px;width: 600px;" [data]="tysuatloai" [type]="type" [options]="options"></google-chart>
+                <div class="ct-chart"><google-chart style="height: 400px;width: 600px;" [data]="thismonth.tysuatloai" [type]="type" [options]="options"></google-chart>
             </div>
         </div>
         
         <div class="col-md-3">
             <div class="weekly-summary text-right">
-                <span class="number">{{doanhthu|currency:'VND'}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+                <span class="number">{{thismonth.doanhthu|currency:'VND'}}</span> 
+                <span class="percentage" *ngIf="lastmonth.doanhthu==0"><i class="fa fa-caret-up text-success"></i> 100%</span>
+                <span class="percentage" *ngIf="lastmonth.doanhthu!=0"><i class="fa fa-caret-up text-success"></i> {{(thismonth.doanhthu-lastmonth.doanhthu)/lastmonth.doanhthu*100|number}}%</span>
+                <span class="info-label">(So với tháng trước:{{lastmonth.doanhthu|currency:'VND'}})</span>
                 <span class="info-label">Tổng doanh thu</span>
             </div>
             <div class="weekly-summary text-right">
-                <span class="number">{{doanhthu-chiphinhap|currency:'VND'}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+                <span class="number">{{thismonth.doanhthu-thismonth.chiphinhap|currency:'VND'}}</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+                <span class="info-label">(So với tháng trước:{{lastmonth.doanhthu-lastmonth.chiphinhap|currency:'VND'}})</span>
                 <span class="info-label">Lợi nhuận trước thuế</span>
             </div>
             <div class="weekly-summary text-right">
-                <span class="number">{{donvixuat}}</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+                <span class="number">{{thismonth.donvixuat}}</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
                 <span class="info-label">Đơn vị xuất ra</span>
             </div>
         </div>
@@ -124,7 +128,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let dtl of doanhthuloai" style="cursor:pointer">
+                        <tr *ngFor="let dtl of thismonth.doanhthuloai" style="cursor:pointer">
                             <td>{{dtl.tenLoai}}</td>
                             <td><span style="float: right;">{{dtl.income|currency:'VND'}}</span></td>
                         </tr>
@@ -158,7 +162,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let spc of spbanchay">
+                      <tr *ngFor="let spc of thismonth.spbanchay">
                           <td>{{spc.tenSanPham}}</td>
                       </tr>
                   </tbody>
@@ -173,7 +177,7 @@
         <!-- RECENT PURCHASES -->
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Danh sách đơn hàng ({{dsdonhang.length}})</h3>
+                <h3 class="panel-title">Danh sách đơn hàng </h3>
                 <div class="right">
                     <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                     <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
@@ -185,12 +189,14 @@
                         <tr>
                             <th>Ngày đặt</th>
                             <th><span style="float: right;">Thanh toán</span></th>
+                            <th><span style="float: right;">Tổng tiền</span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let dtl of dsdonhang" style="cursor:pointer">
+                        <tr *ngFor="let dtl of thismonth.dsdonhang" style="cursor:pointer">
                             <td>{{dtl.ngayDat}}</td>
                             <td><span style="float: right;">{{dtl.thanhToan}}</span></td>
+                            <td><span style="float: right;">{{dtl.tonggiatri|currency:'VND'}}</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -222,7 +228,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let spc of spbanchay">
+                      <tr *ngFor="let spc of thismonth.spbanchay">
                           <td>{{spc.tenSanPham}}</td>
                       </tr>
                   </tbody>

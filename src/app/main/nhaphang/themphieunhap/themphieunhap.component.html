@@ -5,7 +5,7 @@
 
                <div class="panel-body">
                
-                   <div *ngIf="list_ij!=null">
+                   <div >
                     
                        <form class="navbar-form ">
                         <button (click)="removeAll()" class="btn btn-sm btn-danger"><i class="lnr lnr-trash"></i> Xóa tất cả</button>
@@ -73,10 +73,7 @@
                                            <label>Hóa đơn ({{tongdanhmuc}} mục,{{list_ij_sum}} đơn vị sp)</label>
                                            <div>
                                                <table class="table table-striped">
-                                                   <tr><td>Tổng tiền:</td><td class="number" > <span >{{Cost|currency:'VND'}}</span></td></tr>
-                                                   <tr><td>Cần trả ncc</td><td class="number"><b id="total_price"></b><b> ₫</b></td></tr>
-                                                   <tr><td>Tiền trả</td><td><input required="" id="tien-tra" style="float: right;" class="number" type="text"  name="tientrancc"></td></tr>
-                                                   <tr><td>Còn nợ</td><td class="number">  ₫</td></tr>
+                                                   <tr><td>Tổng tiền:</td><td class="number" > <span ><label for=""> {{Cost|currency:'VND'}}</label></span></td></tr>
                                                </table>
                                            </div>
                                            <div>

@@ -21,7 +21,7 @@
             <th>Mã Khách</th>
             <th>Trạng thái</th>
             <th>Xử lý</th>
-            <th>Vị trí hiện tại</th>
+            <th>Tổng tiền</th>
             <th>Xem</th>
             
              <th>Hủy</th>
@@ -49,13 +49,15 @@
            <td *ngIf="dh.trangThai==2"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Giao hàng</a></td>
            <td *ngIf="dh.trangThai==3"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">nhận hàng</a></td>
            <td *ngIf="dh.trangThai==4"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Thanh toán</a></td>
+           <td *ngIf="dh.trangThai==5">X</td>
         </ng-container>
-           <td></td>
-            <td></td>
+           <td ><span style="float:right">{{dh.tonggiatri| currency:'VND'}}</span></td>
+    
             <td><a class="btn btn-info" >Xem</a></td>
             <td *ngIf="dh.trangThai==6">Đã hủy</td>
             <td *ngIf="dh.trangThai==7">Đã Trả hàng</td>
             <td *ngIf="dh.trangThai==5"><a class="btn btn-danger">Trả hàng</a></td>
+            <td *ngIf="dh.trangThai!=5"><a class="btn btn-danger">Hủy đơn</a></td>
         
         </tr>
     </ng-container>
