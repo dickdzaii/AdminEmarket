@@ -18,7 +18,7 @@ menus:any;
         'name':'quản lý sản phẩm','action':'qlsp','icon':'lnr-laptop-phone','children':
         [
           {'ten':'Danh Sách','link':'san-pham'},
-          {'ten':'Giá Bán','link':'gia-ban'},
+         
           {'ten':'Kiểm kho','link':'kiem-kho'}
         ]
       },
@@ -34,7 +34,7 @@ menus:any;
         'name':'quản lý nhập hàng','action':'qlnh','icon':'lnr lnr-file-empty','children':
         [
           {'ten':'Danh Sách','link':'nhap-hang'},
-          {'ten':'Thêm phiếu nhập','link':'them-phieu-nhap'},
+          {'ten':'Thêm phiếu nhập','link':'nhap-hang/new'},
           {'ten':'Trả Hàng nhập','link':'tra-hang-nhap'}
         ]
       },
@@ -42,8 +42,8 @@ menus:any;
         'name':'Thống kê','action':'tkbc','icon':'lnr lnr-chart-bars','children':
         [
           {'ten':'Báo cáo cuối ngày','link':'bao-cao-cuoi-ngay'},
-          {'ten':'Báo cáo tháng','link':'cuoi-thang/'},
-          {'ten':'Tổng kết năm','link':'cuoi-nam'}
+          {'ten':'Báo cáo tháng','link':'thong-ke/thang/'},
+          {'ten':'Tổng kết năm','link':'thong-ke/nam'}
         ]
       },
     ]

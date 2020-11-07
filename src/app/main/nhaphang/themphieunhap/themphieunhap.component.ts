@@ -3,6 +3,7 @@ import { BaseComponent } from 'src/app/services/base.component';
 import { Observable} from 'rxjs';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
+declare var $: any;
 @Component({
   selector: 'app-themphieunhap',
   templateUrl: './themphieunhap.component.html',
@@ -76,6 +77,9 @@ changeQuantity(quantity,item){
   item.quantity =  quantity;
   item.money = item.quantity *  item.giahientai.gia;
 this._iventoryreceiving.addQty(item);
-        }
+}
+}
+      kiemTra(){
+      $('#kiemTraHDN').modal('toggle');
             }
 }

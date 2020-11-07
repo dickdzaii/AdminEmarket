@@ -1,14 +1,50 @@
 <div class="panel panel-headline">
     <div class="panel-heading">
         <h3 class="panel-title">Weekly Overview</h3>
-        <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+        <p id="abc"></p>
     </div>
     <div class="panel-body">
       <div>
-        <input type="text" class="form-control" placeholder="tên sản phẩm">
-        <select class="form-control" name="" id="">
-          <option  *ngFor="let ls of loais" value="ls.maLoai">{{ls.tenLoai}}</option>
-        </select>
+      
+        <table class="table">
+          <tr>
+            <td >
+              <label for="">Tìm theo tên</label>
+            </td>
+            <td colspan="2">
+              <label for="">Tìm theo mức giá</label>
+            </td>
+          </tr>
+         
+          <tr>
+            <td >
+              <input type="text" class="form-control" placeholder="tên sản phẩm">
+            </td>
+            <td><input type="text" class="form-control" placeholder="giá min"></td>
+            <td><input type="text" class="form-control" placeholder="giá max"></td>
+          </tr>
+          <tr>
+            <td><label for="">Danh mục</label> </td>
+            <td><label for="">Loại con 1</label> </td>
+            <td><label for="">Loại con 2</label></td>
+          </tr>
+         <tr>
+           <td><select class="form-control" (change)="getLoai1byLoai($event.target.value)" name="" id="">
+            <option  *ngFor="let ls of loais" [value]="ls.maLoai">{{ls.tenLoai}}</option>
+          </select></td>
+           <td>
+            <select class="form-control" (change)="getLoai2ByLoai1($event.target.value)" name="" id="">
+              <option  *ngFor="let l1s of loai1s" [value]="l1s.maLoai">{{l1s.tenLoai}}</option>
+            </select>
+           </td>
+           <td>
+            <select class="form-control"  name="" id="">
+              <option  *ngFor="let l2s of loai2s" [value]="l2s.maLoai">{{l2s.tenLoai}}</option>
+            </select>
+           </td>
+          </tr>
+        </table>
+        
         <button class="btn btn-default btn-sm">Tìm</button>
       </div>
       <br>
@@ -28,15 +64,15 @@
     </thead>
     <tbody>
         <ng-container *ngFor="let sp of list_item">
-        <tr  style="cursor: pointer;" title="Xem chi tiết {{sp.tenSanPham}}">
+        <tr >
             <td>{{sp.maSanPham}}</td> 
             <td>{{sp.tenSanPham}}</td>
            
             <td>{{sp.loaicon2.tenLoai}}</td>
             <td>{{sp.kho.soLuongCon}}</td>
-            <td>{{sp.giahientai.gia |currency:'VND'}}</td>
+            <td>  <a title="xem lịch sử giá" style="cursor: pointer;" (click)="lichSuGiaBan(sp)" ><u>{{sp.giahientai.gia |currency:'VND'}}</u></a></td>
             <td></td>
-            <td><a class="btn btn-primary">Xem</a></td>
+            <td><a class="btn btn-primary" (click)="openUpdateModal(sp)" >Xem</a></td>
             <td><a class="btn btn-danger" (click)="xoasp(sp.maSanPham)">Xóa</a></td>
         </tr>
     </ng-container>
@@ -69,8 +105,14 @@
                
                     <td>
                       <label class="control-label no-padding-right"> Loại (<span style="color: red;">*</span>)</label>
+                      <select  class="form-control" (change)="getLoai1byLoai($event.target.value)" id="">
+                        <option *ngFor="let slcl of loais" [value]="slcl.maLoai">{{slcl.tenLoai}}</option>
+                      </select>
+                      <select  class="form-control" (change)="getLoai2ByLoai1($event.target.value)"  id="">
+                        <option *ngFor="let slcl of loai1s" [value]="slcl.maLoai">{{slcl.tenLoai}}</option>
+                      </select>
                       <select formControlName="maloai2" class="form-control" id="">
-                        <option value="l.maLoai">l.tenloai</option>
+                        <option *ngFor="let slcl of loai2s" [value]="slcl.maLoai">{{slcl.tenLoai}}</option>
                       </select>
                       <div *ngIf="submitted && f.maloai2.errors" class="invalid-feedback">
                         <div *ngIf="f.maloai2.errors.required">Vui lòng chọn một loại</div>
@@ -80,12 +122,12 @@
                   <tr>
                     <td>
                       <label class="control-label no-padding-right"> mô tả</label>
-                        <textarea placeholder="Tên sản phẩm" class="form-control" formControlName="mota"></textarea>
+                        <textarea placeholder="Mô tả" class="form-control" formControlName="mota"></textarea>
                        
                     </td>
                     <td>
                       <label class="control-label no-padding-right"> ghi chú</label>
-                        <textarea placeholder="Tên sản phẩm" class="form-control" formControlName="ghichu"></textarea>
+                        <textarea placeholder="Ghi chú" class="form-control" formControlName="ghichu"></textarea>
                        
                     </td>
                   </tr>
@@ -212,7 +254,7 @@
                 </div>  -->
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default btn-sm" (click)="Reset()">
+              <button type="reset" class="btn btn-default btn-sm" (click)="reset()">
                 <i class="fa fa-bell"></i> Làm mới
               </button>
               <button type="submit" class="btn btn-success btn-sm btn-submit">
@@ -223,6 +265,46 @@
               </button>
             </div>
           </form>  
+          </div>
+        </div>
+      </div>
+
+      <div  id="LSgiaModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg full-height-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4   class="modal-title" id="titleLSG"></h4>
+            </div>
+           
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Giá</th>
+                      <th>Ngày bd áp dụng</th>
+                      <th>Ngày kết thúc</th>
+                      <th>Giá trị giao dịch</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="single_item">
+                    <tr *ngFor="let g of single_item.dsgiaban">
+                      <td>{{g.gia|currency:'VND'}}</td>
+                      <td>{{g.ngayBD}}</td>
+                      <td *ngIf="g.ngayKT">{{g.ngayKT}}</td>
+                      <td *ngIf=!g.ngayKT>đang áp dụng</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+       
+            </div>
+            <div class="modal-footer">
+             
+              <button type="button" class="btn btn-default btn-sm" onclick="$('#LSgiaModal').closest('.modal').modal('hide')">
+                <i class="fa fa-times"></i> Đóng lại
+              </button>
+            </div>
+   
           </div>
         </div>
       </div>

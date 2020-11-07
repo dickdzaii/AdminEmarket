@@ -77,7 +77,7 @@
                                                </table>
                                            </div>
                                            <div>
-                                           <button class="btn btn-success col-md-12" onclick="return confirm('Bạn có muốn thêm hóa đơn xuất này không?')" id="btn-remove-all-item" type="submit">Thanh Toán</button></div>
+                                           <button class="btn btn-success col-md-12" (click)="kiemTra()" id="btn-remove-all-item" type="button">Thanh Toán</button></div>
                                        </div>
                                    </div>
                                </div>
@@ -92,3 +92,58 @@
        }
        
 </style>
+
+<!-- kiểm tra lại hdn -->
+<div  id="kiemTraHDN" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg full-height-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4   class="modal-title" id="">Kiểm tra lại thông tin hóa đơn</h4>
+        </div>
+       
+          <div class="modal-body">
+              <label for="">Danh sách sản phẩm</label>
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>STT</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th><span style="float: right;">Đơn giá</span></th>
+                  <th><span style="float: right;">Thành tiền</span></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ij2 of list_ij">
+                    <td>{{list_ij.indexOf(ij2)+1}}</td>
+                  <td>{{ij2.tenSanPham}}</td>
+                  <td>{{ij2.quantity}}</td>
+                  <td><span style="float: right;">{{ij2.kho.giaNhap|currency:'VND'}}</span></td>
+                  <td><span style="float: right;">{{ij2.money|currency:'VND'}}</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <td></td>
+                      <td><label for="">Tổng cộng</label></td>
+                      <td><label for="">{{list_ij_sum}}</label></td>
+                      <td><span style="float: right;"></span></td>
+                      <td><label for="" style="float:right;">{{Cost| currency:'VND'}}</label></td>
+                  </tr>
+              </tfoot>
+            </table>
+   
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success btn-sm btn-submit">
+                <i class="fa fa-save"></i> Tiến hành thanh toán
+              </button>
+          <button type="button" class="btn btn-default btn-sm" onclick="$('#kiemTraHDN').closest('.modal').modal('hide')">
+            <i class="fa fa-times"></i> Đóng lại
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>

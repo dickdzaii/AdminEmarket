@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/services/base.component';
 
+declare var $: any;
 @Component({
   selector: 'app-donhang',
   templateUrl: './donhang.component.html',
@@ -31,7 +32,51 @@ total:any;
   orderById(madon){
     this._api.get('api/QLDonHang/by-id/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
  this.donhang=res;
+ $('#ctdhModal').modal('toggle');
+document.getElementById('titleCtdh').innerHTML='Chi tiết đơn hàng';
+document.getElementById('maDH').innerHTML=this.donhang.maDH;
+document.getElementById('titleCtdh').innerHTML='Chi tiết đơn hàng';
+document.getElementById('tenKH').innerHTML=this.donhang.thongtinkh.hoTen;
+document.getElementById('diaChi').innerHTML=this.donhang.diachinhanhang.chiTiet+', '+
+this.donhang.diachinhanhang.tthuyen.type+' '+this.donhang.diachinhanhang.tthuyen.name+', '+
+this.donhang.diachinhanhang.tttinh.type+' '+this.donhang.diachinhanhang.tttinh.name
+;
+document.getElementById('soDT').innerHTML=this.donhang.diachinhanhang.soDienThoai;
+switch (this.donhang.trangThai) {
+  case 0:
+    document.getElementById('trangThai').innerHTML='Chưa xác nhận';
+    break;
 
+    case 1:
+      document.getElementById('trangThai').innerHTML='Đã xác nhận';
+      break;
+      
+  case 2:
+    document.getElementById('trangThai').innerHTML='Đã đóng gói';
+    break;
+    
+  case 3:
+    document.getElementById('trangThai').innerHTML='Đang giao hàng';
+    break;
+    
+  case 4:
+    document.getElementById('trangThai').innerHTML='Đã nhận hàng';
+    break;
+    
+  case 5:
+    document.getElementById('trangThai').innerHTML='Đã thanh toán';
+    break;
+    
+  case 6:
+    document.getElementById('trangThai').innerHTML='Đã hủy đơn';
+    break;
+    
+  case 7:
+    document.getElementById('trangThai').innerHTML='Đã trả hàng';
+    break;
+  default:
+    break;
+}
     }, err => { });
   }
   loadPage(page){
@@ -50,10 +95,12 @@ total:any;
     }, err => { });
   }
   cancelOrder(madon){
-    this._api.get('api/QLDonHang/change-stt/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
+    if(confirm("bạn có muốn hủy đơn?")){
+    this._api.get('api/QLDonHang/cancel/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
  
       this.loadPage(1);
-
+      alert("đơn hàng "+madon+" đã bị hủy.")
     }, err => { });
+  }
   }
 }
