@@ -14,34 +14,31 @@
         <br>
 <table class="table table-hover">
     <thead>
-        <tr>
+        <tr >
             <th>STT</th>
             <th>Mã</th>
             <th>Ngày</th>
-            <th>Mã Khách</th>
-            <th>Trạng thái</th>
-            <th>Vị trí hiện tại</th>
+            <th>Mã NCC</th>
+            <th>Tổng chi phí</th>
             <th>Xem</th>
-             <th>KCG</th>
+       
         </tr>
     </thead>
     <tbody>
         <ng-container>
-        <tr  style="cursor: pointer;" title="Xem chi tiết ">
-            <td></td>
-            <td> </td> 
-            <td> </td>
-            <td> </td>
-           <td></td>
-           <td></td>
-            <td></td>
-            <td><a class="btn btn-danger" >Xóa</a></td>
+        <tr  *ngFor="let hdn of hoadonnhaps" style="cursor: pointer;" title="Xem chi tiết ">
+            <td>{{hoadonnhaps.indexOf(hdn)+1}}</td>
+            <td>{{hdn.maHDN}}</td> 
+            <td>{{hdn.ngayNhap}}</td>
+           <td>{{hdn.maNCC}}</td>
+            <td>{{hdn.tongchiphi|currency:'VND'}}</td>
+            <td><a class="btn btn-info" >Xem</a></td>
         </tr>
     </ng-container>
     </tbody>
 </table>
 </div>
 <div>  
-    <!-- <ngb-pagination [collectionSize]="total" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div> -->
+    <ngb-pagination [collectionSize]="totalRecords" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination></div>
     </div>
 

@@ -1,4 +1,4 @@
-<form method="post"  >
+
    
 <div class="col-md-8">
              <div class="panel">
@@ -56,19 +56,25 @@
        </div>
    </div>
 </div>
+<style type="text/css">
+  .dssphdx{
+height: 200px;
+
+ overflow-x:auto;
+          overflow-y:auto;
+      }
+      
+</style>
+
         <div class="col-md-4">
             <div class="panel">
                 <div class="panel-heading"><h3 style="color:#113E93"><b>Hóa đơn nhập hàng</b></h3></div>
                 <div class="panel-body">
                 
                                                <input type="text" value="" style="display: none;" name="manhanvien">
-                                                   <p>NV: <b> </b><span style="float: right;"> </span></p>
+                                                
                                                    
-                                           <p><select required="" class="form-control col-md-4" name="mancc"  >
- 
-                                       <option value=" "> </option>
-                                       								
-                                           </select></p>
+                                          
                                            <br><br>
                                            <label>Hóa đơn ({{tongdanhmuc}} mục,{{list_ij_sum}} đơn vị sp)</label>
                                            <div>
@@ -81,20 +87,13 @@
                                        </div>
                                    </div>
                                </div>
-                           </form>
+                           
 
-<style type="text/css">
-   .dssphdx{
- height: 200px;
-
-  overflow-x:auto;
-           overflow-y:auto;
-       }
-       
-</style>
 
 <!-- kiểm tra lại hdn -->
+
 <div  id="kiemTraHDN" class="modal fade" role="dialog">
+  <form  *ngIf="doneSetupForm" [formGroup]="formdata" (ngSubmit)="Submit(formdata.value)" >
     <div class="modal-dialog modal-lg full-height-modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -102,6 +101,10 @@
         </div>
        
           <div class="modal-body">
+            <p><select  class="form-control col-md-4" formControlName="maNCC">
+              <option value="" selected>Nhà cung cấp</option>
+              <option *ngFor="let ncc of nccs" [value]="ncc.maNCC">{{ncc.tenNCC}}</option>
+                  </select></p>
               <label for="">Danh sách sản phẩm</label>
             <table class="table">
               <thead>
@@ -136,7 +139,10 @@
    
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-submit">
+            <button  *ngIf="submitted==true" type="button" class="btn btn-success btn-sm btn-submit">
+                <i class="fa fa-save"></i> Tiến hành thanh toán
+              </button>
+              <button *ngIf="submitted==false" type="submit" class="btn btn-success btn-sm btn-submit">
                 <i class="fa fa-save"></i> Tiến hành thanh toán
               </button>
           <button type="button" class="btn btn-default btn-sm" onclick="$('#kiemTraHDN').closest('.modal').modal('hide')">
@@ -145,5 +151,5 @@
         </div>
 
       </div>
-    </div>
+    </div></form>
   </div>
