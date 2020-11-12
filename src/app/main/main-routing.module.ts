@@ -15,7 +15,8 @@ const routes: Routes = [
   {path:'don-hang',loadChildren:()=>import('./donhang/donhang.module').then(x=>x.DonhangModule)},
    {path:'san-pham',loadChildren:()=>import('./sanpham/sanpham.module').then(x=>x.SanphamModule)},
    {path:'khach-hang',loadChildren:()=>import('./khachhang/khachhang.module').then(x=>x.KhachhangModule)},
-   {path:'nhap-hang',loadChildren:()=>import('./nhaphang/nhaphang.module').then(x=>x.NhaphangModule)}               
+   {path:'nhap-hang',loadChildren:()=>import('./nhaphang/nhaphang.module').then(x=>x.NhaphangModule)},   
+   {path:'nha-cung-cap',loadChildren:()=>import('./nhacungcap/nhacungcap.module').then(x=>x.NhacungcapModule)}               
     ]
   }, 
 ];

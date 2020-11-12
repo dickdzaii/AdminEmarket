@@ -101,6 +101,7 @@ onSubmit(value) {
        tenSanPham:value.tensanpham,
        moTa:value.mota,
        ghiChu:value.ghichu,
+       link:value.tensanpham.replace(/ /gi,"-"),
        kho:{
          maShop:'S0001',
          soLuong:Number.parseInt(value.soluong),
@@ -125,6 +126,7 @@ onSubmit(value) {
        tenSanPham:value.tensanpham,
        moTa:value.mota,
        ghiChu:value.ghichu,
+       link:value.tensanpham.replace(/ /gi,"-"),
        kho:{
          maShop:'S0001',
          soLuong:value.soluong,

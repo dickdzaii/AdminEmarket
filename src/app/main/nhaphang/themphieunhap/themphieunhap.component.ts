@@ -115,7 +115,8 @@ changeQuantity(quantity,item){
        
         this.submitted=true;
         
-        if (this.formdata.invalid) { this.submitted=false;
+        if (this.formdata.invalid||this.list_ij==[]||this.list_ij==null||this.list_ij.length==0)
+         { this.submitted=false;
           return alert('Dữ liệu không đúng, vui lòng kiểm tra lại');
          
         }let tg=[]; this.list_ij.forEach(element => {
@@ -143,8 +144,9 @@ changeQuantity(quantity,item){
            console.log(res);
            console.log(tmp);
           alert('Đã thêm phiếu nhập');
-          this.removeAll();
-          $('#kiemTraHDN').closest('.modal').modal('hide')
+          this._iventoryreceiving.removeAllItems();
+          $('#kiemTraHDN').closest('.modal').modal('hide');
+          this.router.navigate(['/main/nhap-hang'])
           });
       }
           }

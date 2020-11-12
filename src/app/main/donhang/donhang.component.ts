@@ -38,6 +38,7 @@ document.getElementById('maDH').innerHTML=this.donhang.maDH;
 document.getElementById('titleCtdh').innerHTML='Chi tiết đơn hàng';
 document.getElementById('tenKH').innerHTML=this.donhang.thongtinkh.hoTen;
 document.getElementById('diaChi').innerHTML=this.donhang.diachinhanhang.chiTiet+', '+
+this.donhang.diachinhanhang.ttxa.type+' '+this.donhang.diachinhanhang.ttxa.name+', '+
 this.donhang.diachinhanhang.tthuyen.type+' '+this.donhang.diachinhanhang.tthuyen.name+', '+
 this.donhang.diachinhanhang.tttinh.type+' '+this.donhang.diachinhanhang.tttinh.name
 ;
@@ -94,7 +95,11 @@ switch (this.donhang.trangThai) {
 
     }, err => { });
   }
+  inHoaDonXuat(){
+    window.print()
+  }
   cancelOrder(madon){
+    this.inHoaDonXuat();
     if(confirm("bạn có muốn hủy đơn?")){
     this._api.get('api/QLDonHang/cancel/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
  

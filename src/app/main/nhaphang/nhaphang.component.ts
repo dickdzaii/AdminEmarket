@@ -36,4 +36,10 @@ loadPage(page){
     
     }, err => { });
 }
+detail(mahdn){
+  this._api.get('api/QLNhapHang/by-id/'+mahdn).takeUntil(this.unsubscribe).subscribe(res => {
+    this.hoadonnhap=res;
+    $('#cthdnModal').modal('toggle');
+}, err => { });
+}
 }
