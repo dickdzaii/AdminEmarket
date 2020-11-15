@@ -113,6 +113,7 @@
                         <option *ngFor="let slcl of loai1s" [value]="slcl.maLoai">{{slcl.tenLoai}}</option>
                       </select>
                       <select formControlName="maloai2" class="form-control" id="">
+                        <option *ngIf="single_item" [value]="single_item.maloai2" selected>{{single_item.loaicon2.tenLoai}}</option>
                         <option *ngFor="let slcl of loai2s" [value]="slcl.maLoai">{{slcl.tenLoai}}</option>
                       </select>
                       <div *ngIf="submitted && f.maloai2.errors" class="invalid-feedback">
