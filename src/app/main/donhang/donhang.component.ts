@@ -90,7 +90,9 @@ switch (this.donhang.trangThai) {
   }
   changeStatus(madon){
     this._api.get('api/QLDonHang/change-stt/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
-
+      document.getElementById('success_bar').style.display='';
+      document.getElementById('success_title').innerHTML='Thành công!';
+      document.getElementById('success_mess').innerHTML='Đã thay đổi trạng thái đơn hàng.';
       this.loadPage(1);
 
     }, err => { });
@@ -99,7 +101,7 @@ switch (this.donhang.trangThai) {
     window.print()
   }
   cancelOrder(madon){
-    this.inHoaDonXuat();
+   
     if(confirm("bạn có muốn hủy đơn?")){
     this._api.get('api/QLDonHang/cancel/'+madon).takeUntil(this.unsubscribe).subscribe(res => {
  

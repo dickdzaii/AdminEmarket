@@ -201,7 +201,6 @@ public openUpdateModal(row) {
       this.single_item = res; 
       // let ngaysinh = new Date(this.single_item.ngaysinh);
         this.formdata = this.fb.group({
-          
           'tensanpham': [this.single_item.tenSanPham, Validators.required],
           'maloai2': [this.single_item.maLoai2, Validators.required],
           'mota': [this.single_item.moTa],
