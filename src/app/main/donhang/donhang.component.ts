@@ -35,7 +35,6 @@ total:any;
  $('#ctdhModal').modal('toggle');
 document.getElementById('titleCtdh').innerHTML='Chi tiết đơn hàng';
 document.getElementById('maDH').innerHTML=this.donhang.maDH;
-document.getElementById('titleCtdh').innerHTML='Chi tiết đơn hàng';
 document.getElementById('tenKH').innerHTML=this.donhang.thongtinkh.hoTen;
 document.getElementById('diaChi').innerHTML=this.donhang.diachinhanhang.chiTiet+', '+
 this.donhang.diachinhanhang.ttxa.type+' '+this.donhang.diachinhanhang.ttxa.name+', '+

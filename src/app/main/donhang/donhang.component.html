@@ -1,6 +1,7 @@
 <div class="panel panel-headline">
     <div class="panel-heading">
-        <h3 class="panel-title">Danh sách đơn hàng</h3>
+        <h3 class="panel-title" >Danh sách đơn hàng</h3>
+      
         <div id="success_bar" style="display: none;" class="alert alert-success">
           <a href="#" class="close" data-dismiss="alert">&times;</a>
            <strong id="success_title"></strong> &nbsp; <span id="success_mess"></span>
@@ -21,9 +22,8 @@
             <th>STT</th>
             <th>Mã</th>
             <th>Ngày <a class="btn btn-sm btn-default" onclick="return alert('hello')"><i class="lnr lnr-chevron-down"></i></a></th>
-            <th>Mã Khách</th>
+            <th>Khách Hàng</th>
             <th>Trạng thái</th>
-            <th>Xử lý</th>
             <th>Tổng tiền</th>
             <th>Xem</th>
             
@@ -32,31 +32,23 @@
     </thead>
     <tbody>
         <ng-container *ngFor="let dh of donhangs">
-        <tr  style="cursor: pointer;" title="Xem chi tiết ">
+        <tr >
             <td>{{donhangs.indexOf(dh)+1}}</td>
             <td>{{dh.maDH}}</td> 
             <td>{{dh.ngayDat}}</td>
-            <td>{{dh.maKH}}</td>
+            <td>{{dh.thongtinkh.hoTen}}</td>
             <ng-container>
-           <td *ngIf="dh.trangThai==0" style="background-color: rgb(233, 252, 69);">Chưa xác nhận</td>
-           <td *ngIf="dh.trangThai==1" style="background-color: rgb(149, 211, 5);">Đã xác nhận</td>
-           <td *ngIf="dh.trangThai==2" style="background-color: rgb(192, 251, 253);">Đã đóng gói</td>
-           <td *ngIf="dh.trangThai==3" style="background-color: rgb(81, 182, 250);">Đang giao hàng</td>
-           <td *ngIf="dh.trangThai==4" style="background-color: rgb(129, 255, 129);">Đã nhận hàng</td>
-           <td *ngIf="dh.trangThai==5" style="background-color: rgb(58, 247, 58);">Đã thanh toán</td>
-           <td *ngIf="dh.trangThai==6" style="background-color: rgb(247, 131, 131);">Đã hủy đơn</td>
-        </ng-container>
-        <ng-container>
-           <td *ngIf="dh.trangThai==0"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Xác nhận</a></td>
-           <td *ngIf="dh.trangThai==1"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Đóng gói</a></td>
-           <td *ngIf="dh.trangThai==2"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Giao hàng</a></td>
-           <td *ngIf="dh.trangThai==3"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Nhận hàng</a></td>
-           <td *ngIf="dh.trangThai==4"><a class="btn btn-success" (click)="changeStatus(dh.maDH)">Thanh toán</a></td>
-           <td *ngIf="dh.trangThai==5||dh.trangThai==6">X</td>
+           <td *ngIf="dh.trangThai==0" style="background-color: rgb(233, 253, 49);"><a (click)="changeStatus(dh.maDH)"  style="cursor: pointer;color: black;" title="Xác nhận đơn hàng">Chưa xác nhận</a> </td>
+           <td *ngIf="dh.trangThai==1" style="background-color: rgb(149, 211, 5);"><a (click)="changeStatus(dh.maDH)"  style="cursor: pointer;color: black;" title="Tiến hành đóng gói">Đã xác nhận</a></td>
+           <td *ngIf="dh.trangThai==2" style="background-color: rgb(192, 251, 253);"><a (click)="changeStatus(dh.maDH)"  style="cursor: pointer;color: black;" title="Tiến hành giao hàng">Đã đóng gói</a></td>
+           <td *ngIf="dh.trangThai==3" style="background-color: rgb(81, 182, 250);"><a (click)="changeStatus(dh.maDH)"  style="cursor: pointer;color: black;" title="Xác nhận nhận hàng">Đang giao hàng</a></td>
+           <td *ngIf="dh.trangThai==4" style="background-color: rgb(129, 255, 129);"><a (click)="changeStatus(dh.maDH)"  style="cursor: pointer;color: black;" title="Xác nhận thanh toán">Đã nhận hàng</a></td>
+           <td *ngIf="dh.trangThai==5" style="background-color: rgb(58, 247, 58);"><a style="cursor: pointer;color: black;" title="Đơn hoàn tất!">Đã thanh toán</a></td>
+           <td *ngIf="dh.trangThai==6" style="background-color: rgb(247, 131, 131);"><a title="Đơn đã bị hủy" style="cursor: pointer;;color: black;">Đã hủy đơn</a></td>
         </ng-container>
            <td ><span style="float:right">{{dh.tonggiatri| currency:'VND'}}</span></td>
     
-            <td><a (click)="orderById(dh.maDH)" ><u>Xem</u></a></td>
+            <td><a (click)="orderById(dh.maDH)" style="cursor: pointer;"><u>Xem</u></a></td>
             <td *ngIf="dh.trangThai==6">Đã hủy</td>
             <td *ngIf="dh.trangThai==7">Đã Trả hàng</td>
             <td *ngIf="dh.trangThai==5"><a  ><u> Trả hàng</u></a></td>

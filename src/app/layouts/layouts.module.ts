@@ -9,6 +9,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FileUploadModule} from 'primeng/fileupload';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleChartsModule } from 'angular-google-charts';
+import * as CanvasJS from '../../assets/canvasjs-3.2.4/canvasjs.min.js';
 @NgModule({
   declarations: [],
   imports: [
