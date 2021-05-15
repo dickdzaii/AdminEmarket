@@ -5,23 +5,23 @@
     </div>
     <div class="panel-body">
       <div>
-      
+      <form [formGroup]="formSearch" (ngSubmit)="search">
         <table class="table">
           <tr>
             <td >
-              <label for="">Tìm theo tên</label>
+              <label for="tensp">Tìm theo tên</label>
             </td>
             <td colspan="2">
-              <label for="">Tìm theo mức giá</label>
+              <label for="giasp">Tìm theo mức giá</label>
             </td>
           </tr>
          
           <tr>
             <td >
-              <input type="text" class="form-control" placeholder="tên sản phẩm">
+              <input type="text" class="form-control" id="tensp" formControlName="tenSp" placeholder="tên sản phẩm hoặc tên loại">
             </td>
-            <td><input type="text" class="form-control" placeholder="giá min"></td>
-            <td><input type="text" class="form-control" placeholder="giá max"></td>
+            <td><input type="text" class="form-control" id="giasp" formControlName="giaMin" placeholder="giá min"></td>
+            <td><input type="text" class="form-control" formControlName="giaMax" placeholder="giá max"></td>
           </tr>
           <tr>
             <td><label for="">Danh mục</label> </td>
@@ -29,23 +29,27 @@
             <td><label for="">Loại con 2</label></td>
           </tr>
          <tr>
-           <td><select class="form-control" (change)="getLoai1byLoai($event.target.value)" name="" id="">
+           <td><select class="form-control" (change)="getLoai1byLoai($event.target.value)" formControlName="loai" name="" id="">
+            <option value="">Chọn</option>
             <option  *ngFor="let ls of loais" [value]="ls.maLoai">{{ls.tenLoai}}</option>
           </select></td>
            <td>
-            <select class="form-control" (change)="getLoai2ByLoai1($event.target.value)" name="" id="">
+            <select class="form-control" (change)="getLoai2ByLoai1($event.target.value)" formControlName="loai1" name="" id="">
+              <option value="">Loại 1</option>
               <option  *ngFor="let l1s of loai1s" [value]="l1s.maLoai">{{l1s.tenLoai}}</option>
             </select>
            </td>
            <td>
-            <select class="form-control"  name="" id="">
+            <select class="form-control" formControlName="loai2" id="">
+              <option value="">Loại 2</option>
               <option  *ngFor="let l2s of loai2s" [value]="l2s.maLoai">{{l2s.tenLoai}}</option>
             </select>
            </td>
           </tr>
         </table>
         
-        <button class="btn btn-default btn-sm">Tìm</button>
+        <button class="btn btn-default btn-sm" type="submit">Tìm</button>
+      </form>
       </div>
       <br>
         <a (click)="createModal()"  class="btn btn-success btn-sm">Thêm</a>

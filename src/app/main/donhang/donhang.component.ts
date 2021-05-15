@@ -79,6 +79,7 @@ switch (this.donhang.trangThai) {
 }
     }, err => { });
   }
+  
   loadPage(page){
     this._api.get('api/QLDonHang/getbyshop/s0001/'+page+'/'+this.size).takeUntil(this.unsubscribe).subscribe(res => {
       this.val = res;
@@ -97,8 +98,9 @@ switch (this.donhang.trangThai) {
     }, err => { });
   }
   inHoaDonXuat(){
-    window.print()
+    window.print();
   }
+
   cancelOrder(madon){
    
     if(confirm("bạn có muốn hủy đơn?")){
