@@ -1,0 +1,111 @@
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">ngành</h3>
+        <p id="abc"></p>
+    </div>
+    <div class="panel-body">
+        <a (click)="createModal()" class="btn btn-success btn-sm">Thêm</a>
+        <div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã ngành</th>
+                        <th>Tên ngành </th>
+                        <th>Ngành</th>
+                        <th>Chi tiết</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let sp of response">
+                        <tr>
+                            <td>{{sp.maNganh}}</td>
+                            <td>{{sp.tenNganh}}</td>
+                            <td>{{sp.makhoa}}</td>
+                            <td><a class="btn btn-primary" (click)="openUpdateModal(sp)">Xem</a></td>
+                            <td><a class="btn btn-danger" (click)="xoaNganh(sp.maNganh)">Xóa</a></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+    <!-- modal -->
+    <div *ngIf="showUpdateModal" id="NganhModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg full-height-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 *ngIf="isCreate" class="modal-title">Thêm ngành</h4>
+                    <h4 *ngIf="!isCreate" class="modal-title">Cập nhật ngành</h4>
+                </div>
+                <form *ngIf="doneSetupForm" [formGroup]="formdata" (ngSubmit)="onSubmit(formdata.value)"
+                    class="form-horizontal ">
+                    <div class="modal-body ">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label no-padding-right"> Mã ngành (<span
+                                                style="color: red;">*</span>)</label>
+                                        <input type="text" placeholder="Mã ngành" class="form-control"
+                                            formControlName="manganh" />
+                                        <div *ngIf="submitted && f.manganh.errors" class="invalid-feedback">
+                                            <div *ngIf="f.manganh.errors.required">Vui lòng nhập ngành</div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label no-padding-right"> Tên ngành (<span
+                                                style="color: red;">*</span>)</label>
+                                        <input type="text" placeholder="Tên ngành" class="form-control"
+                                            formControlName="tennganh" />
+                                        <div *ngIf="submitted && f.tennganh.errors" class="invalid-feedback">
+                                            <div *ngIf="f.tennganh.errors.required">Vui lòng nhập ngành</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label no-padding-right">Khoa</label>
+                                        <select *ngIf="isCreate" formControlName="khoa" class="form-control">
+                                            <option selected value="">Chọn khoa</option>
+                                            <option *ngFor="let kh of dsKhoa" value="{{kh.makhoa}}">{{kh.tenkhoa}}
+                                            </option>
+                                        </select>
+                                        <select *ngIf="!isCreate" formControlName="khoa" class="form-control">
+                                            <option value="">Chọn khoa</option>
+                                            <ng-container *ngFor="let kh of dsKhoa">
+                                                <option *ngIf="checkSameValue(kh.maNganh,single_item.maNganh)" selected value="{{kh.makhoa}}">{{kh.tenkhoa}}</option>
+                                                <option *ngIf="!checkSameValue(kh.maNganh,single_item.maNganh)" value="{{kh.makhoa}}">{{kh.tenkhoa}}</option>
+                                            </ng-container>
+                                        </select>
+                                        <div *ngIf="submitted && f.khoa.errors" class="invalid-feedback">
+                                            <div *ngIf="f.khoa.errors.required">Vui lòng Chọn khoa</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-default btn-sm" (click)="reset()">
+                            <i class="fa fa-bell"></i> Làm mới
+                        </button>
+                        <button type="submit" class="btn btn-success btn-sm btn-submit">
+                            <i class="fa fa-save"></i> Đồng ý
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+                            <i class="fa fa-times"></i> Đóng lại
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

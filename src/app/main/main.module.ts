@@ -7,28 +7,27 @@ import { NavbarComponent } from '../layouts/navbar/navbar.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutsModule } from '../layouts/layouts.module';
-import { SanphamModule } from './sanpham/sanpham.module';
-import { ShopModule } from './shop/shop.module';
-import { DonhangModule } from './donhang/donhang.module';
-import { SanphamComponent } from './sanpham/sanpham.component';
-import { KhachhangModule } from './khachhang/khachhang.module';
-import { NhaphangModule } from './nhaphang/nhaphang.module';
+
+import { MonHocComponent } from './mon-hoc/mon-hoc.component';
+import { KhoaComponent } from './khoa/khoa.component';
+import { ChuongTrinhDaoTaoComponent } from './chuong-trinh-dao-tao/chuong-trinh-dao-tao.component';
+import { NganhComponent } from './nganh/nganh.component';
+import { ChuongTrinhDaoTaoModule } from './chuong-trinh-dao-tao/chuong-trinh-dao-tao.module';
+import { ChuyenNganhComponent } from './chuyen-nganh/chuyen-nganh.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,MainComponent,
-    NavbarComponent,SidebarComponent,SanphamComponent
+    DashboardComponent, MainComponent,
+    NavbarComponent, SidebarComponent, MonHocComponent, KhoaComponent, NganhComponent, ChuyenNganhComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     FormsModule,
     LayoutsModule,
-    SanphamModule,
-    ShopModule,
-    DonhangModule,
-    KhachhangModule,NhaphangModule
+    ChuongTrinhDaoTaoModule
+
 
   ]
 })

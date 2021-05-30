@@ -1,2 +1,23 @@
-
 <router-outlet></router-outlet>
+<div *ngIf="dialog" id="DialogModal" class="modal fade" role="dialog">
+    <div class="modal-dialog full-height-modal modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{dialog.title}}</h4>
+            </div>
+            <div class="modal-body ">
+                <div>
+                    {{dialog.message}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="confirmDelete(cn0001)" class="btn btn-success btn-sm btn-submit">
+                    OK
+                </button>
+                <button *ngIf="dialog.type==alert" type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+                    <i class="fa fa-times"></i> Hủy
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

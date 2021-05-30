@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { InventoryReceivingService } from './inventory-receiving.service';
 import { inject } from '@angular/core/testing';
+import { ChuongTrinhDaoTaoService } from './chuong-trinh-dao-tao.service';
 export class BaseComponent {
    public unsubscribe = new Subject();
    public _renderer:any;
@@ -17,12 +18,15 @@ export class BaseComponent {
    public dateFormat: any;
    public _api: ApiService;
    public _iventoryreceiving:InventoryReceivingService;
+   public _ctdt:ChuongTrinhDaoTaoService;
    public _route: ActivatedRoute;
    constructor(injector: Injector) {  
       this._renderer = injector.get(Renderer2);
       this._api = injector.get(ApiService);
       this._route = injector.get(ActivatedRoute);
       this._iventoryreceiving=injector.get(InventoryReceivingService);
+      this._ctdt=injector.get(ChuongTrinhDaoTaoService);
+
       } 
    public loadScripts() {
          this.renderExternalScript('assets/vendor/jquery/jquery.min.js').onload = () => {

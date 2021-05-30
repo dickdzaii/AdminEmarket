@@ -8,15 +8,15 @@ import { BaseComponent } from '../services/base.component';
 })
 export class MainComponent extends BaseComponent implements OnInit {
 
-  constructor(injector:Injector) 
-  {
+  constructor(injector: Injector) {
     super(injector)
-   }
+  }
 
   ngOnInit(): void {
-setTimeout(() => {
-  this.loadScripts();
-});
+    setTimeout(() => {
+      this.loadScripts();
+    });
   }
+  
 
 }

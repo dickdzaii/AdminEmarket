@@ -8,51 +8,47 @@ import { BaseComponent } from 'src/app/services/base.component';
 })
 export class SidebarComponent extends BaseComponent implements OnInit {
 
-  constructor(injector:Injector) {
+  constructor(injector: Injector) {
     super(injector);
   }
-menus:any;
+  menus: any;
   ngOnInit(): void {
-    this.menus=[
+    this.menus = [
       {
-        'name':'Quản lý sản phẩm','action':'qlsp','icon':'lnr-laptop-phone','children':
-        [
-          {'ten':'Danh Sách','link':'san-pham'},
-         
-          {'ten':'Kiểm kho','link':'san-pham/kiem-kho'}
-        ]
+        name: 'Khoa', 'action': 'khoa', 'children':
+          [
+            { 'ten': 'Danh Sách', 'link': 'khoa' },
+          ]
       },
       {
-        'name':'Đối tác','action':'doitac','icon':'lnr lnr-dice','children':
-        [
-          {'ten':'Nhà cung cấp','link':'nha-cung-cap'},
-          {'ten':'Khách hàng','link':'khach-hang'},
-      
-        ]
+        'name': 'Ngành', 'action': 'nganh', 'icon': 'lnr-laptop-phone',
+        'children':
+          [
+            { 'ten': 'Danh Sách', 'link': 'nganh' },
+          ]
       },
       {
-        'name':'Quản lý đơn hàng','action':'qldh','icon':'lnr lnr-dice','children':
-        [
-          {'ten':'Danh Sách','link':'don-hang'},
-          {'ten':'Thêm đơn mới','link':'them-don-hang'},
-        ]
+        'name': 'Chuyên ngành', 'action': 'cnganh', 'icon': 'lnr-laptop-phone',
+        'children':
+          [
+            { 'ten': 'Danh Sách', 'link': 'chuyen-nganh' },
+          ]
       },
       {
-        'name':'Quản lý nhập hàng','action':'qlnh','icon':'lnr lnr-file-empty','children':
-        [
-          {'ten':'Danh Sách','link':'nhap-hang'},
-          {'ten':'Thêm phiếu nhập','link':'nhap-hang/new'},
-          {'ten':'Trả Hàng nhập','link':'nhap-hang/tra-hang-nhap'}
-        ]
-      },
-      {
-        'name':'Thống kê','action':'tkbc','icon':'lnr lnr-chart-bars','children':
-        [
-          {'ten':'Báo cáo cuối ngày','link':'thong-ke/bao-cao-cuoi-ngay'},
-          {'ten':'Báo cáo tháng','link':'thong-ke/thang/'},
-          {'ten':'Tổng kết năm','link':'thong-ke/nam'}
-        ]
-      },
+        'name': 'Môn học', 'action': 'monHoc', 'icon': 'lnr-laptop-phone',
+        'children':
+          [
+            { 'ten': 'Danh Sách', 'link': 'mon-hoc' },
+          ]
+      }
+      , {
+        'name': 'Chương trình đào tạo', 'action': 'ctDT', 'icon': 'lnr-laptop-phone',
+        'children':
+          [
+            { 'ten': 'Danh Sách', 'link': 'chuong-trinh-dao-tao' },
+            { 'ten': 'Thêm chương trình', 'link': 'chuong-trinh-dao-tao/create' },
+          ]
+      }
     ]
     this.loadScripts();
   }
